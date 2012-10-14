@@ -25,9 +25,9 @@ module Rack
 
     private
     def load_from_file
-      return nil unless File.exists?(revision_file_path)
+      return nil unless ::File.exists?(revision_file_path)
 
-      File.read(revision_file_path)
+      ::File.read(revision_file_path)
     end
 
     def load_from_git

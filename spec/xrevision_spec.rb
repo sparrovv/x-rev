@@ -1,4 +1,6 @@
 require 'fileutils'
+require 'rack/builder'
+require 'rack/mock'
 require_relative '../lib/rack-xrevision'
 
 describe Rack::Xrevision do
@@ -16,6 +18,23 @@ describe Rack::Xrevision do
   end
 
   let(:env) { Hash.new }
+
+  it 'checks if X-Rev header is present' do
+    path = app_path
+    app = Rack::Builder.new do
+      use Rack::Xrevision, :app_path => path
+      run lambda { |env|
+        [
+          200,
+          { 'Content-Type' => 'text/html' },
+          ["<html><head></head><body>Hello, yes this is dog</body></html>"]
+        ]
+      }
+    end
+    response = Rack::MockRequest.new(app).get('/')
+
+    response.headers.should include('X-Rev')
+  end
 
   context 'when there is a REVISION file' do
     let(:xrevision) { Rack::Xrevision.new(app, :app_path => app_path) }
