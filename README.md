@@ -1,17 +1,15 @@
-# X-Revision
+# rack-xrevision
 
   Rack middleware, that adds X-Rev header with revision id (git commit id)
 
   By default it looks for REVISON file that capistrano adds during deploy,
   if it doesn't find it, then it tries to run git, and get the latest commit
 
-  STILL IN PROGRESS
-
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'xrevision'
+    gem 'rack-xrevision'
 
 And then execute:
 
@@ -19,24 +17,25 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install xrevision
+    $ gem install rack-xrevision
 
 ## Usage
 
-### Rails
+in config/application.rb
 
-   TODOS / IDEAS:
+    config.middleware.use Rack::Xrevision, :app_path => Rails.root
 
-     1. Use railtie to load it automatically
-     2. Prepare specific rails class, that use Rails.root
 
-    use Rack::XRev, app, :app_path => Rails.root
+in config.ru
+
+    use Rack::Xrevision, :app_path => Dir.pwd
+
 
 ### Options:
 
   :app_path - Specify app directory, by default it's Dir.pwd 
 
-  :file_name - File with revision number, default: 'REVISION'
+  :file_name - File with revision number, default is 'REVISION'
 
 ## Contributing
 
