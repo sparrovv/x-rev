@@ -1,5 +1,5 @@
-require_relative '../lib/rack/xrevision'
 require 'fileutils'
+require_relative '../lib/rack-xrevision'
 
 describe Rack::Xrevision do
   let(:app_path) { "/tmp/test_app_#{Time.now.to_i}" }
