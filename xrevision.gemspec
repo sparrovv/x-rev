@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'xrevision/version'
+require 'rack/xrevision/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "xrevision"
-  gem.version       = Xrevision::VERSION
+  gem.name          = "rack-xrevision"
+  gem.version       = Rack::Xrevision::VERSION
   gem.authors       = ["Michal Wrobel"]
   gem.email         = ["sparrovv@gmail.com"]
   gem.description   = %q{Rack middleware that puts revision id into response headers}
