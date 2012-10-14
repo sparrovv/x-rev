@@ -1,9 +1,10 @@
 module Rack
   class Xrevision
+    REVISION_FILE_NAME = 'REVISION'
     def initialize(app, options={})
       @app = app
-      @app_path = options.delete(:app_path) || Dir.pwd
-      @revision_file_name = options.delete(:file_name) || 'REVISION'
+      @app_path = options[:app_path] || Dir.pwd
+      @revision_file_name = options[:file_name] || REVISION_FILE_NAME
     end
 
     def call(env)
